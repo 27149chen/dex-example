@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dex-example
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      imagePullSecrets:
+        - name: default-registry-secret
+      containers:
+        - name: web
+          image: ccr.ccs.tencentyun.com/koderover-rc/dex-example:0.1.2
+          ports:
+            - containerPort: 80

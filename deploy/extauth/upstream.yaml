@@ -1,0 +1,10 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: auth-server
+  namespace: gloo
+spec:
+  static:
+    hosts:
+      - addr: auth-service.gloo.svc.cluster.local
+        port: 80

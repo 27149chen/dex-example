@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: web
+  name: dex-example
+spec:
+  ports:
+    - port: 80
+      name: http
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: web
+  type: ClusterIP

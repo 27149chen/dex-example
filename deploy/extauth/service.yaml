@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: auth-service
+  namespace: gloo
+spec:
+  selector:
+    app: sample-auth
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 25012

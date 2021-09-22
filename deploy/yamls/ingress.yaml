@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dex-example
+  annotations:
+    kubernetes.io/ingress.class: koderover-nginx
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: example.test.8slan.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: dex-example
+                port:
+                  number: 80
+            path: /
+            pathType: ImplementationSpecific

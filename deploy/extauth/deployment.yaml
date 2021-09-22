@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-auth
+  namespace: gloo
+  labels:
+    app: sample-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-auth
+  template:
+    metadata:
+      labels:
+        app: sample-auth
+    spec:
+      imagePullSecrets:
+        - name: default-registry-secret
+      containers:
+        - name: sample-auth
+          image: ccr.ccs.tencentyun.com/koderover-rc/sample-auth:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 25012

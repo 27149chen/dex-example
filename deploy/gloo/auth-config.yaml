@@ -1,0 +1,26 @@
+apiVersion: enterprise.gloo.solo.io/v1
+kind: AuthConfig
+metadata:
+  name: jwt-opa
+  namespace: gloo
+spec:
+  configs:
+  - oauth2:
+      oidcAuthorizationCode:
+        appUrl: http://1.117.135.124
+        callbackPath: /callback
+        clientId: gloo
+        clientSecretRef:
+          name: oauth
+          namespace: gloo
+        issuerUrl: http://dex.test.8slan.com/dex
+        session:
+          cookieOptions:
+            notSecure: true
+        scopes:
+        - email
+  - opaAuth:
+      modules:
+      - name: allow-jwt
+        namespace: gloo
+      query: "data.test.allow == true"
