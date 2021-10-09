@@ -1,6 +1,6 @@
 FROM golang:1.16.0
 
-ENV GOPROXY=https://goproxy.io,direct
+ENV GOPROXY=https://goproxy.cn,direct
 WORKDIR /build
 
 COPY go.mod .
@@ -10,7 +10,7 @@ COPY go.sum .
 # RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 go build -ldflags "-extldflags '-static'" -o extauth cmd/extauth/main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-extldflags '-static'" -o extauth cmd/authn/main.go
 
 
 FROM alpine:3.12.0

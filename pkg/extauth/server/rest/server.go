@@ -20,6 +20,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/oauth2"
 )
 
 type engine struct {
@@ -56,6 +57,8 @@ func (s *engine) injectRouters() {
 	g := s.Engine
 
 	g.Any("/*path", func(c *gin.Context) {
+		auth := c.Request.Header.Get("Authorization")
+
 		path := c.Param("path")
 		if !strings.HasPrefix(path, "/api/users") {
 			c.String(200, "OK")

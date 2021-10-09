@@ -1,0 +1,9 @@
+global:
+  extensions:
+    extauth:
+      extauthzServerRef:
+        name: gloo-opa-9191
+        namespace: gloo
+#      requestBody:
+#        maxRequestBytes: 10240
+#      requestTimeout: 0.5s
